@@ -1,0 +1,37 @@
+{
+    "intents": [
+      {"tag": "greeting",
+       "patterns": ["Hi there", "How are you", "Is anyone there?","Hey","Hola", "Hello", "Good day", "Hey", "Ekse", "Hi"],
+       "responses": ["Hi stranger", "Yebo yes, how can I help", "Ey watsupp", "Ekse Hoezit", "Hola", "Hey dude", "You again"]
+      },
+      {"tag": "goodbye",
+       "patterns": ["Bye", "See you later", "Goodbye", "Ok bye", "Bye Bye"],
+       "responses": ["See you!", "Have a nice day", "Sure Bye", "Later dude", "Sayoonara", "Peace out", "Sure dude", "Ciao"]
+      },
+      {"tag": "thanks",
+       "patterns": ["Thanks", "Thank you", "That's helpful", "Awesome, thanks", "Thanks for helping me"],
+       "responses": ["Happy to help!", "Any time!", "My pleasure", "You are welcome", "Sure dude"]
+      },
+      {"tag": "noanswer",
+       "patterns": [],
+       "responses": ["Sorry, can't understand you", "Please give me more info", "Not sure I understand", "I am still here dude"]
+       },
+       {"tag": "name",
+        "patterns": ["What is your name", "Whats your name", "Tell me your name", "Who are you", "Ungubani", "Tell me about yourself", "You are"],
+        "responses": ["I am Karabo", "My name is Karabo", "You can call me KB for short", "I am Karabo, my friends call me KB", "Karabo is my name"]
+        },
+        {"tag": "options",
+         "patterns": ["What do you do", "How can you help", "What do you know", "What is your purpose", "How can you help"],
+         "responses": ["I can tell you about India", "I can give you interesting facts about India"]
+        },
+       {"tag": "India_info",
+        "patterns": [ "What can you tell me about India", "India", "Tell me about India", "What about India", "What do you know about India", "Tell me more about India", "What can you tell me about India", "Tell me about India", "What about India", "What do you know about India", "Tell me more about India"],
+        "responses": ["India, officially the Republic of India (Hindi: Bhārat Gaṇarājya),a country in South Asia.","India is the second-most populous country, the seventh-largest country by land area, and the most populous democracy in the world. "]
+       },
+        {"tag": "India_facts",
+         "patterns": ["India Facts", "India Facts", "Give me some facts about India", "Give me some facts about India", "India Facts", "India interesting facts", "South Africa facts", "South Africa interesting facts", "Tell me something interesting"],
+         "responses": ["The name ‘India’ derives from the river Indus.","India is the 7th largest country in the world.","India has the second-largest population in the world.","Thousands of languages are spoken all over India.","The national symbol of India is the endangered Bengal Tiger.","India is the second largest English speaking country in the world."
+        ]
+        }
+    ]
+  }
