@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <title>Peace</title>
+  <head>
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+      body {
+        font-family: monospace;
+        background-image: url("{{url_for('static',filename='de.jpg')}}");
+        /*background-image: url("de.jpg");*/
+        background-repeat: no-repeat;
+        background-size:cover;
+      }
+      h1 {  
+        background-color:rgba(167, 216, 236, 0.384);
+        border-radius: 15%;
+        display: inline-block;
+        font-size: 3em;
+        margin: 0;
+        padding: 14px;
+      }
+      h3 {
+        color: black;
+        font-size: 20px;
+        margin-top: 3px;
+        text-align: center;
+      }
+      #chatbox {
+        margin-left: auto;
+        margin-right: auto;
+        width: 95%;
+        
+        margin-top: 60px;
+        text-align: center;
+      }
+      #textInput {
+        width: 90%;
+        border: none;
+        border-bottom: 3px solid black;
+        font-family: monospace;
+        font-size: 17px;
+        align-self: start;
+        margin-bottom: 10px;
+        
+      }
+      .userText span {
+        background-color: #695656;
+        padding: 10px;
+        border-radius: 10px;
+        line-height: 1.8;
+        text-align: left;
+               
+      }
+      .botText {
+        color: white;
+        font-family: monospace;
+        width: 90%;
+        font-size: 12px;
+        text-align: left;
+        line-height: 1.8;
+        
+      }
+      .botText span {
+        background-color: #141f22;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 12px;
+        
+      }
+      #tidbit {
+        position: absolute;
+        bottom: 10px;
+        right: 0;
+
+
+        width: 300px;
+      }
+      .boxed {
+        box-shadow: black;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+        
+        
+        margin-top: 60px;
+        border: 2px solid white;
+        background-color:black;
+              
+      }
+      
+      .nameInput{
+        width: 300px;
+        height:30px;
+        background-color: white;
+        border-radius: 40px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      #userInput{
+        text-align: center;
+    
+      }
+    </style>
+</head>
+<body>
+    <center>
+      <h1>
+        <img
+          src="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png"
+          alt="Releif"
+          style="width:40px;height:60px;"
+        />LET'S FIGHT OURSELVES
+      </h1>
+    </center>
+    <div class="boxed" >
+      
+      <div>
+        <div id="chatbox" >
+        </div>
+      </div>
+          <div id="userInput" style="margin-top: 350px;">
+            <input id="nameInput" class="nameInput" type="text" name="msg" placeholder="Ask me anything..." >
+          </div>
+    
+    </div>
+
+    <script>
+      $(document).ready(function() {
+          $("form").on("submit", function(event) {
+              var rawText = $("#text").val();
+              var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+              $("#text").val("");
+              $("#chatbox").append(userHtml);
+              document.getElementById("userInput").scrollIntoView({
+                  block: "start",
+                  behavior: "smooth",
+              });
+              $.ajax({
+                  data: {
+                      msg: rawText,
+                  },
+                  type: "POST",
+                  url: "/get",
+              }).done(function(data) {
+                  var botHtml = '<p class="botText"><span>' + data + "</span></p>";
+                  $("#chatbox").append($.parseHTML(botHtml));
+                  document.getElementById("userInput").scrollIntoView({
+                      block: "start",
+                      behavior: "smooth",
+                  });
+              });
+              event.preventDefault();
+          });
+      });
+  </script>
+
+</body>
+
+</html>
