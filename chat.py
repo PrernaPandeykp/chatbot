@@ -12,38 +12,23 @@ lemmatizer = WordNetLemmatizer()
 
 
 # chat initialization
-model = load_model("D:\sign_to_text\chatbot_pretrainedmodel.h5")
-intents = json.loads(open("D:/sign_to_text/bot/intents.json", encoding='utf-8').read())
-words = pickle.load(open("D:\sign_to_text\words.pkl", "rb"))
-classes = pickle.load(open("D:\sign_to_text\classes.pkl", "rb"))
+model = load_model("chatbot_pretrainedmodel.h5")
+intents = json.loads(open("intents.json", encoding='utf-8').read())
+words = pickle.load(open("words.pkl", "rb"))
+classes = pickle.load(open("classes.pkl", "rb"))
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("home.html")
 
 
 @app.route("/get", methods=["POST"])
-def chatbot_response():
-    msg = request.form["msg"]
-    #checks is a user has given a name, in order to give a personalized feedback
-    if msg.startswith('my name is'):
-        name = msg[11:]
-        ints = predict_class(msg, model)
-        res1 = getResponse(ints, intents)
-        res =res1.replace("{n}",name)
-    elif msg.startswith('hi my name is'):
-        name = msg[14:]
-        ints = predict_class(msg, model)
-        res1 = getResponse(ints, intents)
-        res =res1.replace("{n}",name)
-    #if no name is passed execute normally
-    else:
-        ints = predict_class(msg, model)
-        res = getResponse(ints, intents)
+def chatbot_response(text,model):
+    ints = predict_class(text, model)
+    res = getResponse(ints, intents)
     return res
-
 
 # chat functionalities
 def clean_up_sentence(sentence):
