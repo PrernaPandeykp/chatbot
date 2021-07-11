@@ -4,7 +4,6 @@ import numpy as np
 import pickle
 import json
 from flask import Flask, render_template, request
-from flask_ngrok import run_with_ngrok
 import nltk
 from keras.models import load_model
 from nltk.stem import WordNetLemmatizer
@@ -19,16 +18,10 @@ classes = pickle.load(open("classes.pkl", "rb"))
 
 app = Flask(__name__)
 
-@app.route("/")
-def home():
-    return render_template("home.html")
+@app.route('/', methods=["GET", "POST"])
+def index():
+    return render_template('home.html')
 
-
-@app.route("/get", methods=["POST"])
-def chatbot_response(text,model):
-    ints = predict_class(text, model)
-    res = getResponse(ints, intents)
-    return res
 
 # chat functionalities
 def clean_up_sentence(sentence):
@@ -76,6 +69,12 @@ def getResponse(ints, intents_json):
             break
     return result
 
+@app.route('/get')
+def chatbot_response():
+    text = request.args.get('msg')
+    ints = predict_class(text, model)
+    res = getResponse(ints, intents)
+    return res
 
 if __name__ == "__main__":
     app.run()
