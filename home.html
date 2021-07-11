@@ -130,35 +130,28 @@
     </div>
 
     <script>
-      $(document).ready(function() {
-          $("form").on("submit", function(event) {
-              var rawText = $("#text").val();
-              var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
-              $("#text").val("");
-              $("#chatbox").append(userHtml);
-              document.getElementById("userInput").scrollIntoView({
-                  block: "start",
-                  behavior: "smooth",
-              });
-              $.ajax({
-                  data: {
-                      msg: rawText,
-                  },
-                  type: "POST",
-                  url: "/get",
-              }).done(function(data) {
-                  var botHtml = '<p class="botText"><span>' + data + "</span></p>";
-                  $("#chatbox").append($.parseHTML(botHtml));
-                  document.getElementById("userInput").scrollIntoView({
-                      block: "start",
-                      behavior: "smooth",
-                  });
-              });
-              event.preventDefault();
+        function getBotResponse() {
+          var rawText = $("#nameInput").val();
+          var userHtml = '<p class="userText" style="font-weight:bold;color:white;text-align: end;">YOU:<i><span style>' + rawText + "</span></p>";
+          $("#nameInput").val("");
+          $("#chatbox").append(userHtml);
+          document
+            .getElementById("userInput")
+            .scrollIntoView({ block: "start", behavior: "smooth" });
+          $.get("/get", { msg: rawText }).done(function(data) {
+            var botHtml = '<p class="botText" style="font-weight:bold;color:white;">BOT:<i><span>' + data + "</span></p>";
+            $("#chatbox").append(botHtml);
+            document
+              .getElementById("userInput")
+              .scrollIntoView({ block: "start", behavior: "smooth" });
           });
-      });
-  </script>
-
+        }
+        $("#nameInput").keypress(function(e) {
+          if (e.which == 13) {
+            getBotResponse();
+          }
+        });
+</script>
 </body>
 
 </html>
