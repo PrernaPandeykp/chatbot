@@ -132,14 +132,16 @@
     <script>
         function getBotResponse() {
           var rawText = $("#nameInput").val();
-          var userHtml = '<p class="userText" style="font-weight:bold;color:white;text-align: end;">YOU:<i><span style>' + rawText + "</span></p>";
+          var userHtml = `<p style="text-align: end;font-size:11px;color:white">${formatDate(new Date())}</p><p class="userText" style="font-weight:bold;color:white;text-align: end;">You: <i><span>  ${res}</span></p>`;
+          
           $("#nameInput").val("");
           $("#chatbox").append(userHtml);
           document
             .getElementById("userInput")
             .scrollIntoView({ block: "start", behavior: "smooth" });
           $.get("/get", { msg: rawText }).done(function(data) {
-            var botHtml = '<p class="botText" style="font-weight:bold;color:white;">BOT:<i><span>' + data + "</span></p>";
+            var botHtml = `<p style="text-align: left;font-size:11px;color:white">${formatDate(new Date())}</p> <p class="botText" style="font-weight:bold;color:white;font-size:13px;">BOT:<i><span><span>  ${data}</span></p>`;
+              
             $("#chatbox").append(botHtml);
             document
               .getElementById("userInput")
