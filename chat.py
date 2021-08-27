@@ -4,10 +4,24 @@ import numpy as np
 import pickle
 import json
 from flask import Flask, render_template, request
+import speech_recognition as sr
+
 import nltk
+nltk.download('punkt')
+nltk.download('wordnet')
 from keras.models import load_model
 from nltk.stem import WordNetLemmatizer
+import tensorflow
 lemmatizer = WordNetLemmatizer()
+import pyttsx3 as pp
+
+#voice
+engine=pp.init()
+voices=engine.getProperty('voices')
+engine.setProperty('voice',voices[1].id)
+def speak(word):
+    engine.say(word)
+    engine.runAndWait()
 
 
 # chat initialization
@@ -69,11 +83,14 @@ def getResponse(ints, intents_json):
             break
     return result
 
+
+
 @app.route('/get')
 def chatbot_response():
     text = request.args.get('msg')
     ints = predict_class(text, model)
     res = getResponse(ints, intents)
+    
     return res
 
 if __name__ == "__main__":
