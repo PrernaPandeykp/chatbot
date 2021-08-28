@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+  <title>Info</title>
+  <head>
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <style>
+      body {
+        font-family: monospace;
+        background-image: url("{{url_for('static',filename='de.jpg')}}");
+        /*background-image: url("de.jpg");*/
+        background-repeat: no-repeat;
+        background-size:cover;
+      }
+      h1 {  
+        background-color:rgba(167, 216, 236, 0.384);
+        border-radius: 15%;
+        display: inline-block;
+        font-size: 3em;
+        margin: 0;
+        padding: 14px;
+      }
+      h3 {
+        color: black;
+        font-size: 20px;
+        margin-top: 3px;
+        text-align: center;
+      }
+      #chatbox {
+        margin-left: auto;
+        margin-right: auto;
+        width: 95%;
+        
+        margin-top: 60px;
+        text-align: center;
+      }
+      #textInput {
+        width: 90%;
+        border: none;
+        border-bottom: 3px solid black;
+        font-family: monospace;
+        font-size: 17px;
+        align-self: start;
+        margin-bottom: 10px;
+        
+      }
+      .userText span {
+        background-color: #695656;
+        padding: 10px;
+        border-radius: 10px;
+        line-height: 1.8;
+        text-align: left;
+               
+      }
+      .botText {
+        color: white;
+        font-family: monospace;
+        width: 90%;
+        font-size: 12px;
+        text-align: left;
+        line-height: 1.8;
+        
+      }
+      .botText span {
+        background-color: #577e86;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 12px;
+        align-content: right;
+        
+      }
+      #tidbit {
+        position: absolute;
+        bottom: 10px;
+        right: 0;
+        width: 300px;
+      }
+      .msg-img {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+      background: rgb(168, 168, 168);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      border-radius: 50%;
+      align-content: right;
+    }
+      .boxed {
+        box-shadow: black;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+        
+        
+        margin-top: 60px;
+        border: 2px solid white;
+        background-color:rgb(41, 37, 37);
+              
+      }
+      
+      .nameInput{
+        width: 300px;
+        height:30px;
+        background-color: white;
+        border-radius: 40px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      #userInput{
+        text-align: center;
+    
+      }
+      
+      .msg-bubble {
+  max-width: 450px;
+  padding: 15px;
+  border-radius: 15px;
+  background: var(--right-msg-bg);
+  background-color:red;
+  position:right;
+}
+.msg-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.msg-info-name {
+  margin-right: 10px;
+  font-weight: bold;
+}
+.msg-info-time {
+  font-size: 0.85em;
+}
+    </style>
+</head>
+<body>
+    <center>
+      <h1>
+        <img
+          src="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png"
+          alt="Releif"
+          style="width:40px;height:60px;"
+        />Let's know something
+      </h1>
+    </center>
+    <div class="boxed" >
+      
+      <div>
+        <div id="chatbox" >
+        </div>
+      </div>
+          <div id="userInput" style="margin-top: 350px;">
+            
+            <input id="nameInput" class="nameInput" type="text" name="msg" placeholder="Ask me anything..."  >
+            
+            <button type="button" onclick="getBotResponse_withVoice()">
+            <svg  xmlns="http://www.w3.org/2000/svg" style="color:black;" width="16" height="16" fill="currentColor" class="bi bi-mic" viewBox="0 0 16 16">
+              <path class="mic" d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+              <path class="mic" d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0v5zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3z"/>
+            </svg>
+            
+            </button>
+            <span id="action" style="color: rgb(218, 238, 238);"></span></p>
+            <div id="output" class="hide" style="color: bisque;"></div>
+          
+            
+          </div>
+    
+    </div>
+
+<script>
+        const BOT_IMG = "https://image.flaticon.com/icons/svg/327/327779.svg";
+        const PERSON_IMG = "https://image.flaticon.com/icons/svg/145/145867.svg";
+        const BOT_NAME = "Bot";
+        const PERSON_NAME = "You";
+        
+        function formatDate(date) {
+          const h = "0" + date.getHours();
+          const m = "0" + date.getMinutes();
+
+          return `${h.slice(-2)}:${m.slice(-2)}`;
+        }
+        
+        function getBotResponse_withVoice() {
+		        // get output div reference
+		      var output = document.getElementById("output");
+		        // get action element reference
+          var action = document.getElementById("action");
+          var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+          var recognition = new SpeechRecognition();
+                      
+          // This runs when the speech recognition service starts
+          recognition.onstart = function() {
+    
+            action.innerHTML = "<small>listening...</small>";
+          };
+
+          recognition.onspeechend = function() {
+              // when user is done speaking
+              action.innerHTML = "<small></small>";
+              recognition.stop();
+          }
+                        
+          // This runs when the speech recognition service returns result
+          recognition.onresult = function(event) {
+              var transcript = event.results[0][0].transcript;
+              var confidence = event.results[0][0].confidence;
+              //output.innerHTML = "<b>Text:</b> " + transcript + "<br/> <b>Confidence:</b> " + confidence*100+"%";
+              output.classList.remove("hide");
+              //document.getElementById("nameInput").value = transcript;
+              var userHtml = `<p style="text-align: end;font-size:11px;color:white">${formatDate(new Date())}</p><p class="userText" style="font-weight:bold;color:white;text-align: end;">You: <i><span>  ${transcript}</span></p>`;
+              $("#chatbox").append(userHtml);
+              document
+            .getElementById("userInput")
+            .scrollIntoView({ block: "start", behavior: "smooth" });
+          $.get("/get", { msg: transcript }).done(function(data) {
+            var botHtml = `<p style="text-align: left;font-size:11px;color:white">${formatDate(new Date())}</p> <p class="botText" style="font-weight:bold;color:white;font-size:13px;">BOT:<i><span><span>  ${data}</span></p>`;
+            $("#chatbox").append(botHtml);
+            var msg = new SpeechSynthesisUtterance();
+            msg.text = data;
+            window.speechSynthesis.speak(msg);
+            document
+              .getElementById("userInput")
+              .scrollIntoView({ block: "start", behavior: "smooth" });
+          });
+
+              }            
+          // start recognition
+          recognition.start();
+        }
+        
+        function formatDate(date) {
+          const h = "0" + date.getHours();
+          const m = "0" + date.getMinutes();
+
+          return `${h.slice(-2)}:${m.slice(-2)}`;
+        }
+        
+        function getBotResponse() {
+          var rawText = $("#nameInput").val();
+          var userHtml = `<p style="text-align: end;font-size:11px;color:white">${formatDate(new Date())}</p><p class="userText" style="font-weight:bold;color:white;text-align: end;">You: <i><span>  ${rawText}</span></p>`;
+          
+          $("#nameInput").val("");
+          $("#chatbox").append(userHtml);
+          document
+            .getElementById("userInput")
+            .scrollIntoView({ block: "start", behavior: "smooth" });
+          $.get("/get", { msg: rawText }).done(function(data) {
+            var botHtml = `<p style="text-align: left;font-size:11px;color:white">${formatDate(new Date())}</p> <p class="botText" style="font-weight:bold;color:white;font-size:13px;">BOT:<i><span><span>  ${data}</span></p>`;
+            $("#chatbox").append(botHtml);
+            
+            document
+              .getElementById("userInput")
+              .scrollIntoView({ block: "start", behavior: "smooth" });
+          });
+        }
+        $("#nameInput").keypress(function(e) {
+          if (e.which == 13) {
+            getBotResponse();
+          }
+        });
+</script>
+
+</body>
+
+</html>
+
