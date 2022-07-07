@@ -11,8 +11,8 @@ from keras.optimizers import SGD
 import random
 nltk.download('punkt')
 nltk.download('wordnet')
-data_file = open('intents.json').read()
-
+# data_file = open('intents.json').read()
+data_file = open('intents.json',encoding='utf-8').read()
 lemmatizer = WordNetLemmatizer()
 intents = json.loads(data_file)
 
@@ -20,7 +20,7 @@ words=[]
 classes = []
 documents = []
 ignore_words = ['?', '!']
-data_file = open('intents.json').read()
+
 
 for intent in intents['intents']:
     for pattern in intent['patterns']:

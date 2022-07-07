@@ -9,6 +9,7 @@ import speech_recognition as sr
 import nltk
 nltk.download('punkt')
 nltk.download('wordnet')
+nltk.download('omw-1.4')
 from keras.models import load_model
 from nltk.stem import WordNetLemmatizer
 import tensorflow

@@ -1,37 +1,168 @@
 {
     "intents": [
       {"tag": "greeting",
-       "patterns": ["Hi there", "How are you", "Is anyone there?","Hey","Hola", "Hello", "Good day", "Hey", "Ekse", "Hi"],
-       "responses": ["Hi stranger", "Yebo yes, how can I help", "Ey watsupp", "Ekse Hoezit", "Hola", "Hey dude", "You again"]
+       "patterns": ["Hi there", "How are you", "Is anyone there?","Hey","Hello", "Good day", "Hey", "Hi"],
+       "responses": ["Hi stranger", "how can I help", "Hey dude", "You again"]
       },
       {"tag": "goodbye",
        "patterns": ["Bye", "See you later", "Goodbye", "Ok bye", "Bye Bye"],
-       "responses": ["See you!", "Have a nice day", "Sure Bye", "Later dude", "Sayoonara", "Peace out", "Sure dude", "Ciao"]
+       "responses": ["See you!", "Have a nice day", "Sure Bye", "Later dude", "Peace out", "Sure dude"]
       },
       {"tag": "thanks",
        "patterns": ["Thanks", "Thank you", "That's helpful", "Awesome, thanks", "Thanks for helping me"],
        "responses": ["Happy to help!", "Any time!", "My pleasure", "You are welcome", "Sure dude"]
       },
       {"tag": "noanswer",
-       "patterns": [],
+       "patterns": [" ","jhro","  urc yg","whuio","ejh"],
        "responses": ["Sorry, can't understand you", "Please give me more info", "Not sure I understand", "I am still here dude"]
        },
        {"tag": "name",
         "patterns": ["What is your name", "Whats your name", "Tell me your name", "Who are you", "Ungubani", "Tell me about yourself", "You are"],
-        "responses": ["I am Karabo", "My name is Karabo", "You can call me KB for short", "I am Karabo, my friends call me KB", "Karabo is my name"]
+        "responses": ["I am Kiet Virtual Assistant","KVA(Kiet Virtual Assistant)"]
         },
         {"tag": "options",
-         "patterns": ["What do you do", "How can you help", "What do you know", "What is your purpose", "How can you help"],
-         "responses": ["I can tell you about India", "I can give you interesting facts about India"]
+         "patterns": ["What do you do", "How can you help","what is your goal" ,"What do you know", "What is your purpose", "How can you help"],
+         "responses": ["I can tell you about KIET college", "I can give you information of KIET"]
         },
-       {"tag": "India_info",
-        "patterns": [ "What can you tell me about India", "India", "Tell me about India", "What about India", "What do you know about India", "Tell me more about India", "What can you tell me about India", "Tell me about India", "What about India", "What do you know about India", "Tell me more about India"],
-        "responses": ["India, officially the Republic of India (Hindi: Bhārat Gaṇarājya),a country in South Asia.","India is the second-most populous country, the seventh-largest country by land area, and the most populous democracy in the world. "]
-       },
-        {"tag": "India_facts",
-         "patterns": ["India Facts", "India Facts", "Give me some facts about India", "Give me some facts about India", "India Facts", "India interesting facts", "South Africa facts", "South Africa interesting facts", "Tell me something interesting"],
-         "responses": ["The name ‘India’ derives from the river Indus.","India is the 7th largest country in the world.","India has the second-largest population in the world.","Thousands of languages are spoken all over India.","The national symbol of India is the endangered Bengal Tiger.","India is the second largest English speaking country in the world."
-        ]
+        {
+          "tag":"address",
+          "patterns":["address of kiet college","what is the address of kiet college","where does kiet college exist","address"],
+          "responses":["KIET GROUP OF INSTITUTIONS Delhi-NCR, Meerut Road (NH-58) Ghaziabad-201206"]
+        },
+        {
+          "tag":"acres",
+          "patterns":["campus size","what is the campus size of kiet"],
+          "responses":["18 acres"]
+        },
+        {
+          "tag":"organise",
+          "patterns":["established year"],
+          "responses":["established year is 1998"]
+        },
+        {
+          "tag":"administration",
+          "patterns":["tell me administration details of kiet","administration details","who is the administer of kiet college","admin officer","administration","details admin officer"],
+          "responses":["Honorary Captain K.P. Singh - Mob no: 9711598330 - email: adminofficer@kiet.edu"]
+        },
+        {
+          "tag":"registrar",
+          "patterns":["registrar office","details of registrar","registrar","tell me something abut kist registrar office"],
+          "responses":["Mr. Anup Srivastava - Mob no: 9873816182 - email: anup.srivastav@kiet.edu or registrar@kiet.edu"]
+        },
+        {
+          "tag":"acc_office",
+          "patterns":["accounts office","details account office","tell me something abut kist account office"],
+          "responses":["Mr. Arun Agarwal - Mob no: 9873196050 - email: arun.agarwal@kiet.edu"]
+        },
+        {
+          "tag":"placement_incharge",
+          "patterns":["who is the incharge of placements", "placements incharge", " who is the head of placement center"],
+          "responses":["Mr. Arvind Kumar Sharma - Head: Corporate Relations and Placement Centre -  Email: arvind.sharma.crpc@kiet.edu - Mob no.: 9999995765"]
+          
+        },
+
+        {
+          "tag":"lib",
+          "patterns":["who is the incharge of library", "who manages library","head of library"],
+          "responses":["Dr. Sanjay Sharma - Librarian - Email: sanjay.sharma.lib@kiet.edu -  Mob no.: 9953218447"]
+        },
+        {
+          "tag":"dean",
+          "patterns":["who is the dean of kiet college","dean of kiet"],
+          "responses":["Dr. Satish Kumar - Mob no:9871322833 - email: satish.kumar@kiet.edu"]
+        },
+
+        {
+          "tag":"director",
+          "patterns":["who is the director of kiet","kiet director"],
+          "responses":["Dr. (Col) A Garg - Director -  E-mail: director@kiet.edu  - Mob no.: 8744097773"]
+        },
+        {
+          "tag":"students",
+          "patterns":["how many students are there in kiet every year","approx students","freshers","how many admissions are confirmed in kiet","admissions"],
+          "responses":[" 6000+ students"]
+        },
+        {
+          "tag":"courses",
+          "patterns":["how many courses are there in kiet college","different courses we have in kiet","available courses"],
+          "responses":["there are many coures such as - B.Tech BPharma MBA MCA M.Tech"]
+        },
+        {
+          "tag":"departments",
+          "patterns":["how many departments are there in kiet","list departments","departments","different branches","how many branches are there in kiet"],
+          "responses":["Computer Science Engineering, Information Technology, Computer Science, Electrical and Electronic Engineering, Electrical and Communication Engineering, Civil Engineering, Mechanical Engineering, CSIT."  ]
+        },
+        {
+          "tag":"clubs",
+          "patterns":["how many clubs are there in kiet","total clubs","list clubs of kiet","kiet clubs"],
+          "responses":["TedX, KMC(KIET music Club), odyssey(literary society of kiet), Quizzinga, E-Cell, Spark Creations, Uddeshhya, DOJO Karate Club, FC kiet, Creative Cell, Innogeeks, Kiet Koders"]
+        },
+        {
+          "tag":"it_hod",
+          "patterns":["who is the HoD of Information technology"," hod of IT", "it department "],
+          "responses":["Dr. Adesh Kr. Pandey - HOD & Professor - Department of Information Technology - Qualifications: Ph.D - Speciaisation: Machine Learning/Data Analytics  - Email Id :- ak.pandey@kiet.edu"]
+        
+        },
+        {
+          "tag":"cs_hod",
+          "patterns":["who is hod of cs","who is hod of computer science","computer science hod"],
+          "responses":["Dr. Pradeep Kumar Singh  - HOD & Professor (CS) - E-mail: pradeep.singh@kiet.edu  - Mob no.: 9816627732"]
+        },
+        {
+          "tag":"cse_hod",
+          "patterns":["who is the hod of computer science engineering","hod of cse", "cse hod"],
+          "responses":["Dr. Vineet Sharma Professor & Addl HoD at Department of CSE - Qualifications: M.Tech, Ph.D. Comp Sc(JMI) - Specialisation: Algorithms - Email Id :- vineet.sharma@kiet.edu"]
+        },
+        {
+          "tag":"ece_hod",
+          "patterns":[" who is the hod of Electronics & Communication Engineering","hod of ece","ece hod"],
+          "responses":["Dr. Sanjay Kumar Sharma - HOD & Professor Department of Electronics & Communication Engineering  -  Qualifications: PhD, MTech, B.Tech. - Specialisation:Wireless Communication - Email Id : drsanjaysharma@kiet.edu"]
+        },
+        {
+          "tag":"en_hod",
+          "patterns":["who is the hod of Electrical and Electronic Engineering","hod of Electrical and Electronic Engineering","en hod","hod of en"],
+          "responses":["Dr. Neeraj Kumar Gupta -  HOD & Professor - Department of Electrical & Electronics Engineering  - qualifications: Ph.D - specialisation: Computational Intelligence - Email Id :- neeraj.gupta@kiet.edu"]
+          
+        },
+        {
+          "tag":"civil_hod",
+          "patterns":["who is the hod of civil engineering"," who is the hod of civil department", "hod of civil engineering"],
+          "responses":["Dr. Shailendra Kumar Tiwary - Dean, B. Tech. 1st Year & Applied Science - HOD & Professor - Department of Civil Engineerin - Email Id : shailendra.tiwary@kiet.edu"]
+        },
+        {
+          "tag":"bpharma_hod",
+          "patterns":["who is the hod of bpharma","bpharma hod","who is the hod of bachelor of pharmacy"],
+          "responses":["Dr. K. Nagarajan - HOD & Professor -  Department of KIET School of Pharmacy - specialisation:PHARMACEUTICAL CHEMISTRY -  Email Id :- k.nagarajan@kiet.edu"]
+          
+        },
+
+
+        {
+          "tag":"hostels",
+          "patterns":["how many hostels are there in kiet college","number of hostels","hostels"],
+          "responses":["there are 3 hostels for both girls and boys"]
+        },
+        {
+          "tag":"avg_package",
+          "patterns":["what is the average package of kiet college","avearge package"],
+          "responses":["avearge package is 4- 5 lakhs"]
+        },
+        {
+          "tag":"companies",
+          "patterns":["which companies visit kiet","companies","visited companies"],
+          "responses":["Amazon Adobe TCS INFOSYS HCL Tech Mahindra Wipro Limited Capgemini Accenture Cognizant ION Nokia HITACHI Samsung OPPO and many more.."]
+        },
+        {
+          "tag":"food_centre",
+          "patterns":["various food centres in kiet","food centres","which food centres are available in kiet"],
+          "responses":["Hungry Nights - Big Treat - Amul - Multipurpose centre(MPC)"]
+          
+        },
+        {
+          "tag":"blocks",
+          "patterns":["How many blocks are there in kiet campus","which block is for which department","different blocks"],
+          "responses":["A: Registrar Office plus Library   B:Electronics & Communication Engineering  C: Mechanical Engineering  D: Electrical & Electronics Engineering  E: B.Tech(IT CSE CSIT CIVIL) F:clubs block  G: for First year"]
+          
         }
     ]
   }
