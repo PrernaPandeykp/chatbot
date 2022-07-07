@@ -1,0 +1,7 @@
+numpy
+flask
+SpeechRecognition==3.8.1
+nltk==3.7
+keras==2.9.0
+tensorflow==2.9.1
+pyttsx==2.90
