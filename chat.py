@@ -14,15 +14,15 @@ from keras.models import load_model
 from nltk.stem import WordNetLemmatizer
 import tensorflow
 lemmatizer = WordNetLemmatizer()
-import pyttsx3 as pp
+# import pyttsx3 as pp
 
-#voice
-engine=pp.init()
-voices=engine.getProperty('voices')
-engine.setProperty('voice',voices[1].id)
-def speak(word):
-    engine.say(word)
-    engine.runAndWait()
+# #voice
+# engine=pp.init()
+# voices=engine.getProperty('voices')
+# engine.setProperty('voice',voices[1].id)
+# def speak(word):
+#     engine.say(word)
+#     engine.runAndWait()
 
 
 # chat initialization
